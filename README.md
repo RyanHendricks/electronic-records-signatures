@@ -1,46 +1,49 @@
 # Clinical Trial Document Integrity Network - Module 11 - Electronic Records + Electronic Signatures 
 
-> This network is designed to track the electronic signatures on electronic records for a clinical trial. Various participants in the network have differing levels of access and authority but no single participant group has complete authority. A regulator is able to view the transaction chain to obtain information such as:
+This network is designed to track the electronic signatures on electronic records for a clinical trial in accordance with Title 21 CFR Part 11 of the Code of Federal Regulations.
+
+Various participants in the network have differing levels of access and authority but no single participant group has complete authority. A regulator is able to view the transaction chain to obtain information such as:
 > * The timeline and chain of events for the creation of a document, review, approval, certification, signature, modification, signature, trasmittal, archival, and destruction.
 > * Participant creation (activation), modification, actions taken, authority modified, access level changes, and account removal (deactivated).
 
 
 This business network defines:
 
-**Participants**
-`Regulator` - FDA, Auditors, Regulators
-`Sponsor` - The Clinical Trial Sponsor
-`TrialManagement` - The group or entity repsonsible for the management of the Clinical Trial; typically a CRO.
-`SiteManagement` - The person or group responsible for management of individual Clinical Trial sites. Usually a member of the `TrialManagement` organization but with oversight for only a subset of the study sites. A "CRA" would be an example of a member of this participant group.
-`SitePI` - The principal investigator for an individual study site. This name will be listed on the FDA 1572 for a clinical trial completed by the clinical trial site prior to initiation of a protocol. Sub-Investigators will be implemented in this group in later version
-`SiteResearchStaff` - Research staff for a clinical trial site that are not considered to be investigators (PI or sub-Is). These participants will be listed in the Delegation of Authority Log prior to their inclusion in this network. 
-
-**Assets**
-`Document`
-`Signature`
-`Authority` -- maybe
+**Participants**    
+`Regulator` - FDA, Auditors, Regulators  
+`Sponsor` - The Clinical Trial Sponsor  
+`TrialManagement` - The group or entity repsonsible for the management of the Clinical Trial; typically a CRO.  
+`SiteManagement` - The person or group responsible for management of individual Clinical Trial sites. Usually a member of the `TrialManagement` organization but with oversight for only a subset of the study sites. A "CRA" would be an example of a member of this participant group.  
+`SitePI` - The principal investigator for an individual study site. This name will be listed on the FDA 1572 for a clinical trial completed by the clinical trial site prior to initiation of a protocol. Sub-Investigators will be implemented in this group in later version.  
+`SiteResearchStaff` - Research staff for a clinical trial site that are not considered to be investigators (PI or sub-Is). These participants will be listed in the Delegation of Authority Log prior to their inclusion in this network.   
 
 
-**Transactions**
-`Create Participant`
-`Activate Participant`
-`Deactivate Particpant`
-`Assign Participant Permissions`
+**Assets**  
+`Document`  
+`Signature`  
+`Authority` -- maybe  
 
-`Create Document`
-`Modify Document`
-`Review Document`
-`Approve Document`
-`Certify Document`
-`Retrieve Document`
-`Transmit Document`
-`Archive Document`
 
-`Create Signature`
-`Certify Signature`
-`Approve Signature`
-`Revoke Signature`
-`Amend Signature`
+**Transactions**  
+`Create Participant`  
+`Activate Participant`  
+`Deactivate Particpant`  
+`Assign Participant Permissions`  
+
+`Create Document`  
+`Modify Document`  
+`Review Document`  
+`Approve Document`  
+`Certify Document`  
+`Retrieve Document`  
+`Transmit Document`  
+`Archive Document`  
+
+`Create Signature`  
+`Certify Signature`  
+`Approve Signature`  
+`Revoke Signature`  
+`Amend Signature`  
 
 
 
