@@ -15,32 +15,29 @@
 /**
   * A library of standard reusable types
   */
-namespace clinicaltrial.network
+namespace esignaturenetwork.cfr21.reg
 
 
 
 abstract participant Person {
+  o String personId
   o String title optional
-  o String firstName  optional
-  o String lastName  optional
-  o Gender gender optional
-  o ContactDetails contactDetails optional
-}
-
-enum Gender {
- o MALE
- o FEMALE
- o OTHER
-}
-
-concept ContactDetails {
-  o String email  optional
-  o String mobilePhone  optional
-  o String workPhone optional
+  o String firstName
+  o String lastName
+  o String email  
+  o String phone  
+  o Affiliation affiliation  
   o Address address optional
 }
 
-
+enum Affiliation {
+  o Site
+  o PI
+  o TrialManagement
+  o Sponsor
+  o Regulator
+  o Auditor
+}
 
 /**
  * A concept for a simple street address

@@ -15,33 +15,35 @@
 /**
   * A library of standard reusable types
   */
-namespace esignaturenetwork.cfr21.reg
+namespace clinicaltrial.network
 
 
-
+// Define abstract person
 abstract participant Person {
-  o String personId
   o String title optional
-  o String firstName
-  o String lastName
-  o String email  
-  o String phone  
-  o Affiliation affiliation  
+  o String firstName  optional
+  o String lastName  optional
+  o Gender gender optional
+  o ContactInfo contactInfo optional
   o Address address optional
 }
 
-enum Affiliation {
-  o Site
-  o PI
-  o TrialManagement
-  o Sponsor
-  o Regulator
-  o Auditor
+// Gender enum
+enum Gender {
+ o MALE
+ o FEMALE
+ o OTHER
 }
 
-/**
- * A concept for a simple street address
- */
+// Contact info concept
+concept ContactInfo {
+  o String email  optional
+  o String mobilePhone  optional
+  o String workPhone optional
+}
+
+
+// Address concept
 concept Address {
   o String city optional
   o String country optional
@@ -52,4 +54,33 @@ concept Address {
   o String street3 optional
   o String postalCode optional
   o String postOfficeBoxNumber optional
+}
+
+// Study staff participant created with identifying ID
+participant StudyStaff identified by StudyStaffID extends Person {
+o String StudyStaffID 
+}
+
+enum Status{
+  o Created
+  o Modified
+  o Reviewed
+  o Signed
+}
+asset Document identified by DocID {
+  o String DocID
+  o Status status
+  --> StudyStaff owner optional
+  o String value
+  o DocumentLogEntry[] logEntries optional
+}
+
+concept DocumentLogEntry {
+  --> StudyStaff signer
+  o DateTime timestamp
+}
+
+transaction DocumentESignature{
+
+  
 }

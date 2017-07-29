@@ -11,28 +11,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace clinicaltrial.company
+namespace clinicaltrial.network.personnel
 
-import clinicaltrial.base.Person
-import clinicaltrial.base.Address
-import clinicaltrial.base.ContactDetails
+import clinicaltrial.network.base.Person
 
-/**
- * An abstract participant type in this business network
- */
+
+abstract participant SiteStaff extends Person {
+  o String SiteID
+  o concatenate['SiteID','SiteStaffID']
+ // --> SiteStaff[] sitestaff optional
+ // --> PI investigator
+  //--> Manager manager
+}
+
 
 abstract participant Company {
-  o Address headquarters optional
+
   o String name optional
   --> Manager[] managers optional
 }
 
-abstract participant Site extends Company {
-  o String ID optional
-  --> SiteStaff[] sitestaff optional
-  --> PI investigator
-  --> Manager manager
-}
+
 
 abstract participant Staff extends Person {
   --> Company company
@@ -43,10 +42,6 @@ abstract participant Staff extends Person {
   o String jobRole optional
 }
 
-abstract participant SiteStaff extends Staff {
---> Site site
-
-}
 
 abstract participant Manager extends Staff {
   --> Staff[] directReports optional
