@@ -12,22 +12,18 @@
  * limitations under the License.
  */
 
-/**
-  * A library of standard reusable types
-  */
+//Reusable definition concepts
 namespace clinicaltrial.network
 
 
-// Define abstract person
-abstract participant Person {
+//Defining numerous reuseable  concept definitions
+concept PersonalInfo {
   o String title optional
   o String firstName  optional
   o String lastName  optional
   o Gender gender optional
-  o ContactInfo contactInfo optional
-  o Address address optional
+  o String credentials optional
 }
-
 // Gender enum
 enum Gender {
  o MALE
@@ -35,52 +31,28 @@ enum Gender {
  o OTHER
 }
 
-// Contact info concept
 concept ContactInfo {
   o String email  optional
   o String mobilePhone  optional
   o String workPhone optional
 }
 
-
-// Address concept
 concept Address {
+  o String streetnum optional
+  o String streetname optional
   o String city optional
+  o String state optional
+  o String zipcode optional
   o String country optional
-  o String locality optional
-  o String region optional
-  o String street optional
-  o String street2 optional
-  o String street3 optional
+  o String county optional
   o String postalCode optional
   o String postOfficeBoxNumber optional
 }
 
-// Study staff participant created with identifying ID
-participant StudyStaff identified by StudyStaffID extends Person {
-o String StudyStaffID 
-}
-
-enum Status{
-  o Created
-  o Modified
-  o Reviewed
-  o Signed
-}
-asset Document identified by DocID {
-  o String DocID
-  o Status status
-  --> StudyStaff owner optional
-  o String value
-  o DocumentLogEntry[] logEntries optional
-}
-
-concept DocumentLogEntry {
-  --> StudyStaff signer
-  o DateTime timestamp
-}
-
-transaction DocumentESignature{
-
-  
+//MetaData concept; currently being used to catch any additional information.
+//Eventually to be used to apply more dynamic information to definitions to streamline creation of the Trial Master File.
+concept MetaData {
+  o String comments  optional
+  o String description  optional
+  o String notes  optional
 }

@@ -83,3 +83,68 @@ event UpdateOrderStatusEvent {
   o OrderStatus orderStatus
   o Order order
 }
+
+
+/**
+ * Based on the DVLA V62 document
+ */
+transaction ApplicationForVehicleRegistrationCertificate {
+  o VehicleDetails vehicleDetails
+  --> Person keeper
+  o String dvlaFleetNumber optional
+  o String driversLicenseNumber optional
+  o Long mileage optional
+  o String previousPostCode optional
+}
+abstract transaction VehicleTransaction  {
+  --> Vehicle vehicle
+}
+/**
+ * DVLA V5C
+ */
+transaction PrivateVehicleTransfer extends VehicleTransaction {
+  --> Person seller
+  --> Person buyer
+  o String specialNotes optional
+}
+enum VehicleStatus {
+  o ACTIVE
+  o OFF_THE_ROAD
+  o SCRAPPED
+}
+asset Vehicle identified by vin {
+  o String vin
+  o VehicleDetails vehicleDetails
+  o VehicleStatus vehicleStatus
+  --> Person owner optional
+  o String numberPlate optional
+  o String suspiciousMessage optional
+  o VehicleTransferLogEntry[] logEntries optional
+}
+transaction ScrapVehicle extends VehicleTransaction {
+  o VehicleTransaction[] logEntries optional
+}
+transaction UpdateSuspicious extends VehicleTransaction {
+  o String message
+
+  
+transaction DocumentESignature{
+
+  
+}
+ */
+namespace clinicaltrial.network.personnel
+
+import clinicaltrial.network.base.Person
+
+
+abstract participant SiteStaff extends Person {
+  o String SiteID
+  o concatenate['SiteID','SiteStaffID']
+ // --> SiteStaff[] sitestaff optional
+ // --> PI investigator
+  //--> Manager manager
+}
+
+
+
