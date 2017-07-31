@@ -15,15 +15,6 @@
 //Reusable definition concepts
 namespace clinicaltrial.network
 
-
-//Defining numerous reuseable  concept definitions
-concept PersonalInfo {
-  o String title optional
-  o String firstName  optional
-  o String lastName  optional
-  o Gender gender optional
-  o String credentials optional
-}
 // Gender enum
 enum Gender {
  o MALE
@@ -37,6 +28,7 @@ concept ContactInfo {
   o String workPhone optional
 }
 
+// Address concept
 concept Address {
   o String streetnum optional
   o String streetname optional
@@ -49,10 +41,89 @@ concept Address {
   o String postOfficeBoxNumber optional
 }
 
-//MetaData concept; currently being used to catch any additional information.
-//Eventually to be used to apply more dynamic information to definitions to streamline creation of the Trial Master File.
+// Define abstract person
+abstract participant Person {
+  o String title optional
+  o String firstName  optional
+  o String lastName  optional
+  o Gender gender optional
+  o ContactInfo contactInfo optional
+  o Address address optional
+}
+
+// Study staff participant created with identifying ID
+participant User identified by UserID extends Person {
+o String UserID 
+}
+
+participant Investigator extends User {
+
+}
+
+participant Sponsor extends User {
+
+
+}
+
+enum Status{
+  o Created
+  o Modified
+  o Reviewed
+  o Signed
+}
+enum Type {
+  o Regulatory 
+  o Safety
+  o IP
+  o IRB
+}
+
 concept MetaData {
-  o String comments  optional
-  o String description  optional
-  o String notes  optional
+  o String description
+}
+
+asset Document identified by DocID {
+  o String DocID
+  o Status status
+  o Type type 
+  o MetaData metadata optional
+  o DocumentLog[] logEntries 
+  o SignatureLog[] logSignatures
+}
+
+concept DocumentLog {
+  o DateTime timestamp
+}
+
+concept SignatureLog {
+  o DateTime timestamp
+}
+
+
+abstract transaction DocumentChange {
+    --> Document document
+}
+
+/**
+ * An temperature reading for a shipment. E.g. received from a
+ * device within a temperature controlled shipping container
+ */
+
+
+/**
+ * A notification that a shipment has been received by the
+ * importer and that funds should be transferred from the importer
+ * to the grower to pay for the shipment.
+ */
+transaction ChangeDocStatus identified by ChangeID extends DocumentChange {
+ // --> DocumentLog logEntries
+ o String ChangeID
+ o Status status
+}
+
+transaction DocumentSign identified by ChangeID extends DocumentChange {
+ // --> SignatureLog logSignatures
+ o String ChangeID
+ o 
+ o Status status
 }
