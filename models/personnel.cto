@@ -11,49 +11,60 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace clinicaltrial.network.personnel
-
-import clinicaltrial.network.base.Person
 
 
-abstract participant SiteStaff extends Person {
-  o String SiteID
-  o concatenate['SiteID','SiteStaffID']
- // --> SiteStaff[] sitestaff optional
- // --> PI investigator
-  //--> Manager manager
+namespace clinicaltrial.network
+import clinicaltrial.network.base.*
+
+//Building network participants
+abstract participant User identified by userID {
+  o String userID
+  o String Affiliation
+  o PersonalInfo personalinfo
+  o ContactInfo contactinfo
+  o MetaData metadata
 }
 
-
-abstract participant Company {
-
-  o String name optional
-  --> Manager[] managers optional
+enum UserRole {
+  o Regulator
+  o Sponsor
+  o Manager
+  o Investigator
+  o ResearchNOS
+  o Coordinator
+}
+enum UserContext {
+  o TrialManagement
+  o DataManagement
+  o Laboratory
+  o Safety
+  o TrialOversight
+  o Site
+}
+enum UserPermissions {
+  o Admin
+  o PI
+  o Auditor
+  o ReadOnly
+  o Limited
 }
 
-
-
-abstract participant Staff extends Person {
-  --> Company company
-  --> Manager manager optional
-  o DateTime startDate optional
-  o String employmentStatus optional
-  o String department optional
-  o String jobRole optional
+// Study staff participant created with identifying ID
+participant StudyPersonnel extends User {
+  o UserContext context
+  o UserRole role
+  o UserPermissions access default="Limited"
 }
 
-
-abstract participant Manager extends Staff {
-  --> Staff[] directReports optional
-  --> Sponsor[] Sponsor optional
+participant Investigator extends User {
+  o UserContext context default="Site"
+  o UserRole role default="Investigator"
+  o UserPermissions access default="PI"
 }
 
-abstract participant Sponsor extends Company {
-    o String SponsorId
+participant CTM extends User{
+  o UserContext context default="TrialManagement"
+  o UserRole role default="Manager"
+  o UserPermissions access default="Admin"
 }
 
-abstract participant PI extends Staff {
-   o String ID optional
-   o String authority optional
-  --> Staff[] directReports optional
-}

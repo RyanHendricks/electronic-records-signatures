@@ -7,7 +7,10 @@ Various participants in the network have differing levels of access and authorit
 > * Participant creation (activation), modification, actions taken, authority modified, access level changes, and account removal (deactivated).
 
 
-This business network defines:
+This business network is for the Management and Oversight of Clinical Trials. Currently, this is just a framework upon which more features and integrations can be built. There are numerous  ways a distributed ledger can be implemented into the Trial Management Procedures. From Regulatory Document version control, electronic signatures, investigational product accountability, Institutional Review Board approvals,subject enrollment logs, temperature reading for IP shipments, training certificates, etc. Excel is still heavily used in the industry due to its simplicity, familiarity, compatibility, and the overall frustration of research staff resulting from an uneccesarily large number of individual systems required for only one protocol.
+
+Currently, this Clinical Research DLT Application is in the infancy stage and merely consists of a framework at this time. The goal of this version was to focus on illustrating the potential larger scale application of the framework by creating a comprehensive foundation that would permit such larger scale implementation. 
+
 
 **Participants**    
 `Regulator` - FDA, Auditors, Regulators  

@@ -83,3 +83,35 @@ event UpdateOrderStatusEvent {
   o OrderStatus orderStatus
   o Order order
 }
+abstract participant Company {
+
+  o String name optional
+  --> Manager[] managers optional
+}
+
+
+
+abstract participant Staff extends Person {
+  --> Company company
+  --> Manager manager optional
+  o DateTime startDate optional
+  o String employmentStatus optional
+  o String department optional
+  o String jobRole optional
+}
+
+
+abstract participant Manager extends Staff {
+  --> Staff[] directReports optional
+  --> Sponsor[] Sponsor optional
+}
+
+abstract participant Sponsor extends Company {
+    o String SponsorId
+}
+
+abstract participant PI extends Staff {
+   o String ID optional
+   o String authority optional
+  --> Staff[] directReports optional
+}
